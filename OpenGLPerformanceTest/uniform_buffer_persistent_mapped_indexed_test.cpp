@@ -39,7 +39,7 @@ static const char* fragment_shader =
 #define FrameOffset(frame_) ( FrameOffsetIndex(frame_) * sizeof( per_object_uniforms ) )
 
 void uniform_buffer_persistent_mapped_indexed_test::pre_draw( int index_ ) {
-    _data_ptr[FrameOffsetIndex(_frame_index) + index_]._color = glm::vec4( 1.f );
+    _data_ptr[FrameOffsetIndex( _frame_index ) + index_]._color = glm::vec4( 1.f );
     _data_ptr[FrameOffsetIndex( _frame_index ) + index_]._mvp = glm::mat4( 1.f );
     auto offset = index_ / MAX_INDEX;
     if ( offset != _last_offset ) {
@@ -88,7 +88,6 @@ uniform_buffer_persistent_mapped_indexed_test::uniform_buffer_persistent_mapped_
     _index_index = _shader.get_uniform_index( "index" );
 
     _uniform_buffer.bind( GL_UNIFORM_BUFFER );
-    //glBufferData( GL_UNIFORM_BUFFER, _data_buffer.size() * sizeof( per_object_uniforms ), nullptr, GL_DYNAMIC_DRAW );
     glBufferStorage( GL_UNIFORM_BUFFER, NUMBER_OF_OBJECTS * sizeof( per_object_uniforms ) * FRAME_LATENCY, nullptr, GL_MAP_WRITE_BIT | GL_MAP_PERSISTENT_BIT | GL_MAP_COHERENT_BIT );
     _data_ptr = reinterpret_cast<per_object_uniforms*>( glMapBufferRange( GL_UNIFORM_BUFFER, 0, NUMBER_OF_OBJECTS * sizeof( per_object_uniforms ) * FRAME_LATENCY, GL_MAP_WRITE_BIT | GL_MAP_PERSISTENT_BIT | GL_MAP_COHERENT_BIT ) );
 }
