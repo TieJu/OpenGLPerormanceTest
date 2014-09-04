@@ -77,9 +77,6 @@
     <ClInclude Include="no_uniform_block_test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="geometry_tools.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="measurement_tools.h">
       <Filter>Header Files</Filter>
     </ClInclude>

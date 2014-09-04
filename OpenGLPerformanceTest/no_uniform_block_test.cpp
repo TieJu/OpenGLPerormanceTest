@@ -1,6 +1,5 @@
 #include "no_uniform_block_test.h"
 
-#include "geometry_tools.h"
 #include <vector>
 #include <iterator>
 #include <gtc/matrix_transform.hpp>
