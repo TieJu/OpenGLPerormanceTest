@@ -1,7 +1,7 @@
 #include "uniform_buffer_mapped_test.h"
 
 static const char* vertex_shader =
-"#version 450 core \n"
+"#version 440 core \n"
 "in vec2 in_xyzw; \n"
 "layout(std140) uniform uniform_buffer { \n"
 "  mat4 mvp; \n"
@@ -11,7 +11,7 @@ static const char* vertex_shader =
 "  gl_Position = mvp * vec4(in_xyzw,-1.0,1.0); \n"
 "}";
 static const char* fragment_shader =
-"#version 450 core \n"
+"#version 440 core \n"
 "layout(std140) uniform uniform_buffer { \n"
 "  mat4 mvp; \n"
 "  vec4 color; \n"

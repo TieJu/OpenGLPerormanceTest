@@ -4,7 +4,7 @@
 #define MAX_INDEX 512
 
 static const char* vertex_shader =
-"#version 450 core \n"
+"#version 440 core \n"
 "in vec2 in_xyzw; \n"
 "uniform int index;\n"
 "struct buffer_data {\n"
@@ -18,7 +18,7 @@ static const char* vertex_shader =
 "  gl_Position = data[index].mvp * vec4(in_xyzw,-1.0,1.0); \n"
 "}";
 static const char* fragment_shader =
-"#version 450 core \n"
+"#version 440 core \n"
 "uniform int index;\n"
 "struct buffer_data {\n"
 "  mat4 mvp; \n"

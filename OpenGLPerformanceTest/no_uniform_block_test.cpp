@@ -6,14 +6,14 @@
 #include <gtc/matrix_transform.hpp>
 
 static const char* vertex_shader =
-"#version 450 core \n"
+"#version 440 core \n"
 "in vec2 in_xyzw; \n"
 "uniform mat4 mvp; \n"
 "void main() { \n"
 "  gl_Position = mvp * vec4(in_xyzw,-1.0,1.0); \n"
 "}";
 static const char* fragment_shader =
-"#version 450 core \n"
+"#version 440 core \n"
 "uniform vec4 color; \n"
 "out vec4 o_color; \n"
 "void main() { \n"
