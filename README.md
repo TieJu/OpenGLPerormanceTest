@@ -1,4 +1,4 @@
-OpenGL Perormance Test
+OpenGL Performance Test
 ====================
 
 Some OpenGL performance testing code
