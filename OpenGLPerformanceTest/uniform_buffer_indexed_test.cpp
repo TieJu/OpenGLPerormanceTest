@@ -1,6 +1,6 @@
 #include "uniform_buffer_indexed_test.h"
 
-// limited to about 512 per batch, increasing this will generate errors on shader compilation/linking on nvidia GF GTX 660 
+// limited to about 256 per batch, increasing this will generate errors on shader compilation/linking on nvidia GF GTX 660 
 #define MAX_INDEX 256
 
 static const char* vertex_shader =
