@@ -1,8 +1,5 @@
 #include "no_uniform_block_test.h"
 
-#include <vector>
-#include <iterator>
-#include <gtc/matrix_transform.hpp>
 
 static const char* vertex_shader =
 "#version 440 core \n"

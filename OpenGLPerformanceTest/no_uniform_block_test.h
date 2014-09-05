@@ -1,8 +1,6 @@
 #pragma once
 
 #include "opengl_test.h"
-#include <vector>
-#include <glm.hpp>
 
 class no_uniform_block_test : public opengl_test<no_uniform_block_test> {
     struct per_object_uniforms {
