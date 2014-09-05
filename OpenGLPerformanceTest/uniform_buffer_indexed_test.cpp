@@ -38,6 +38,7 @@ void uniform_buffer_indexed_test::pre_draw( int index_ ) {
         _last_offset = offset;
         _uniform_buffer.bind( GL_UNIFORM_BUFFER, _uniform_buffer_index, offset * sizeof( per_object_uniforms ) * MAX_INDEX, sizeof( per_object_uniforms ) * MAX_INDEX );
     }
+    index_ %= MAX_INDEX;
     set_uniform( _index_index, 1, &index_ );
 }
 
