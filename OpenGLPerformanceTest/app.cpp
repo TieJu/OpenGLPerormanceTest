@@ -7,10 +7,10 @@
 /*
  * ordering fastest is top
  * persistant mapped buffer indexed
- * uniform_buffer_indexed
  * no_uniform_block
- * storage_buffer_indexed
  * uniform_update
+ * uniform_buffer_indexed
+ * storage_buffer_indexed
  * uniform_buffer_mapped
  */
 
@@ -35,28 +35,28 @@ void app::do_frame() {
     glClear( GL_COLOR_BUFFER_BIT );
     if ( test_type::no_uniform_block == _active_test ) {
         auto took = measure_code_time( [=] { _no_uniform_block.run(); } );
-        write( std::to_string( std::chrono::duration_cast<std::chrono::milliseconds>( took ).count() ).c_str() );
-        write( "ms no uniform buffer test\n" );
+        write( std::to_string( std::chrono::duration_cast<std::chrono::microseconds>( took ).count() ).c_str() );
+        write( "us no uniform buffer test\n" );
     } else if ( test_type::uniform_update == _active_test ) {
         auto took = measure_code_time( [=] { _uniform_update.run(); } );
-        write( std::to_string( std::chrono::duration_cast<std::chrono::milliseconds>( took ).count() ).c_str() );
-        write( "ms uniform buffer update test\n" );
+        write( std::to_string( std::chrono::duration_cast<std::chrono::microseconds>( took ).count() ).c_str() );
+        write( "us uniform buffer update test\n" );
     } else if ( test_type::uniform_buffer_indexed == _active_test ) {
         auto took = measure_code_time( [=] { _uniform_buffer_indexed.run(); } );
-        write( std::to_string( std::chrono::duration_cast<std::chrono::milliseconds>( took ).count() ).c_str() );
-        write( "ms uniform buffer indexed test\n" );
+        write( std::to_string( std::chrono::duration_cast<std::chrono::microseconds>( took ).count() ).c_str() );
+        write( "us uniform buffer indexed test\n" );
     } else if ( test_type::storage_buffer_indexed == _active_test ) {
         auto took = measure_code_time( [=] { _storage_buffer_indexed.run(); } );
-        write( std::to_string( std::chrono::duration_cast<std::chrono::milliseconds>( took ).count() ).c_str() );
-        write( "ms storage buffer indexed test\n" );
+        write( std::to_string( std::chrono::duration_cast<std::chrono::microseconds>( took ).count() ).c_str() );
+        write( "us storage buffer indexed test\n" );
     } else if ( test_type::uniform_buffer_mapped == _active_test ) {
         auto took = measure_code_time( [=] { _uniform_buffer_mapped.run(); } );
-        write( std::to_string( std::chrono::duration_cast<std::chrono::milliseconds>( took ).count() ).c_str() );
-        write( "ms uniform buffer mapped test\n" );
+        write( std::to_string( std::chrono::duration_cast<std::chrono::microseconds>( took ).count() ).c_str() );
+        write( "us uniform buffer mapped test\n" );
     } else if ( test_type::uniform_buffer_persistent_mapped_indexed == _active_test ) {
         auto took = measure_code_time( [=] { _uniform_buffer_persistent_mapped_indexed.run(); } );
-        write( std::to_string( std::chrono::duration_cast<std::chrono::milliseconds>( took ).count() ).c_str() );
-        write( "ms uniform buffer persistent mapped indexed test\n" );
+        write( std::to_string( std::chrono::duration_cast<std::chrono::microseconds>( took ).count() ).c_str() );
+        write( "us uniform buffer persistent mapped indexed test\n" );
     }
     _ogl.swap();
 }

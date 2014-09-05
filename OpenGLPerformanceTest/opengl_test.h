@@ -7,7 +7,7 @@
 #include <iterator>
 #include <vector>
 
-#define NUMBER_OF_OBJECTS   1024 * 8
+#define NUMBER_OF_OBJECTS   1024 * 4
 
 template<typename Derived>
 class opengl_test {
