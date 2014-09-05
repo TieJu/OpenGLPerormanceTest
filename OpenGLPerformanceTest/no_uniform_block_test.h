@@ -7,7 +7,10 @@ class no_uniform_block_test : public opengl_test<no_uniform_block_test> {
         glm::mat4   _m;
         glm::mat4   _v;
         glm::mat4   _p;
-        glm::vec4   _color;
+        glm::vec4   _r;
+        glm::vec4   _g;
+        glm::vec4   _b;
+        glm::vec4   _a;
     };
 
     friend class opengl_test<no_uniform_block_test>;
@@ -15,7 +18,10 @@ class no_uniform_block_test : public opengl_test<no_uniform_block_test> {
     int                                 _m_index;
     int                                 _v_index;
     int                                 _p_index;
-    int                                 _color_index;
+    int                                 _r_index;
+    int                                 _g_index;
+    int                                 _b_index;
+    int                                 _a_index;
 
     void pre_draw( int index_ );
     void post_draw( int index_ );

@@ -9,7 +9,7 @@
 #include <memory>
 #include <tuple>
 
-#define NUMBER_OF_OBJECTS   1024 * 4
+#define NUMBER_OF_OBJECTS   1024 * 32
 
 struct shared_state {
     vertex_buffer   _geometry;

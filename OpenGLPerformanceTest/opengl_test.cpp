@@ -14,13 +14,13 @@ std::shared_ptr<shared_state> get_shared_state() {
             -0.5f, -0.5f,
             0.5f, -0.5f,
 
-            0.0f + 0.7f, 0.5f,
-            -0.5f + 0.7f, -0.5f,
-            0.5f + 0.7f, -0.5f,
+            //0.0f + 0.7f, 0.5f,
+            //-0.5f + 0.7f, -0.5f,
+            //0.5f + 0.7f, -0.5f,
 
-            0.0f - 0.7f, 0.5f,
-            -0.5f - 0.7f, -0.5f,
-            0.5f - 0.7f, -0.5f
+            //0.0f - 0.7f, 0.5f,
+            //-0.5f - 0.7f, -0.5f,
+            //0.5f - 0.7f, -0.5f
         };
 
         s->_vertices_per_object = static_cast<int>( ( end( vertices ) - begin( vertices ) ) / 2 );

@@ -7,7 +7,10 @@ static const char* vertex_shader =
 "  mat4 m; \n"
 "  mat4 v; \n"
 "  mat4 p; \n"
-"  vec4 color; \n"
+"  vec4 r; \n"
+"  vec4 g; \n"
+"  vec4 b; \n"
+"  vec4 a; \n"
 "};\n"
 "void main() { \n"
 "  gl_Position = m * v * p * vec4(in_xyzw,-1.0,1.0); \n"
@@ -18,16 +21,22 @@ static const char* fragment_shader =
 "  mat4 m; \n"
 "  mat4 v; \n"
 "  mat4 p; \n"
-"  vec4 color; \n"
+"  vec4 r; \n"
+"  vec4 g; \n"
+"  vec4 b; \n"
+"  vec4 a; \n"
 "};\n"
 "out vec4 o_color; \n"
 "void main() { \n"
-"  o_color = color; \n"
+"  o_color = r + g + b + a; \n"
 "}";
 
 void uniform_update_test::pre_draw( int index_ ) {
     per_object_uniforms data;
-    data._color = glm::vec4{ 1.f, 1.f, 1.f, 1.f };
+    data._r = glm::vec4{ 1.f, 0.f, 0.f, 0.f };
+    data._g = glm::vec4{ 0.f, 1.f, 0.f, 0.f };
+    data._b = glm::vec4{ 0.f, 0.f, 1.f, 0.f };
+    data._a = glm::vec4{ 0.f, 0.f, 0.f, 1.f };
     data._m = glm::mat4( 1.f );
     data._v = glm::mat4( 1.f );
     data._p = glm::mat4( 1.f );

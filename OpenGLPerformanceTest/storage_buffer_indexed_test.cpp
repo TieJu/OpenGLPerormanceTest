@@ -8,7 +8,10 @@ static const char* vertex_shader =
 "  mat4 m; \n"
 "  mat4 v; \n"
 "  mat4 p; \n"
-"  vec4 color; \n"
+"  vec4 r; \n"
+"  vec4 g; \n"
+"  vec4 b; \n"
+"  vec4 a; \n"
 "};\n"
 "layout(std140, binding=0) buffer uniform_buffer { \n"
 "  buffer_data data[]; \n"
@@ -23,14 +26,17 @@ static const char* fragment_shader =
 "  mat4 m; \n"
 "  mat4 v; \n"
 "  mat4 p; \n"
-"  vec4 color; \n"
+"  vec4 r; \n"
+"  vec4 g; \n"
+"  vec4 b; \n"
+"  vec4 a; \n"
 "};\n"
 "layout(std140, binding=0) buffer uniform_buffer { \n"
 "  buffer_data data[]; \n"
 "};\n"
 "out vec4 o_color; \n"
 "void main() { \n"
-"  o_color = data[index].color; \n"
+"  o_color = data[index].r + data[index].g + data[index].b + data[index].a; \n"
 "}";
 
 void storage_buffer_indexed_test::pre_draw( int index_ ) {
@@ -76,7 +82,10 @@ storage_buffer_indexed_test::storage_buffer_indexed_test() {
     _uniform_buffer.bind( GL_SHADER_STORAGE_BUFFER );
 
     per_object_uniforms ud;
-    ud._color = glm::vec4{ 1.f, 1.f, 1.f, 1.f };
+    ud._r = glm::vec4{ 1.f, 0.f, 0.f, 0.f };
+    ud._g = glm::vec4{ 0.f, 1.f, 0.f, 0.f };
+    ud._b = glm::vec4{ 0.f, 0.f, 1.f, 0.f };
+    ud._a = glm::vec4{ 0.f, 0.f, 0.f, 1.f };
     ud._m = glm::mat4( 1.f );
     ud._v = glm::mat4( 1.f );
     ud._p = glm::mat4( 1.f );

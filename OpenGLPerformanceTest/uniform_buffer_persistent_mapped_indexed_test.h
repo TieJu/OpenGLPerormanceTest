@@ -7,7 +7,10 @@ class uniform_buffer_persistent_mapped_indexed_test : public opengl_test<uniform
         glm::mat4   _m;
         glm::mat4   _v;
         glm::mat4   _p;
-        glm::vec4   _color;
+        glm::vec4   _r;
+        glm::vec4   _g;
+        glm::vec4   _b;
+        glm::vec4   _a;
     };
 
     friend class opengl_test<uniform_buffer_persistent_mapped_indexed_test>;
