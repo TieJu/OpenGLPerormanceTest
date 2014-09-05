@@ -5,20 +5,24 @@ static const char* vertex_shader =
 "in vec2 in_xyzw; \n"
 "uniform int index;\n"
 "struct buffer_data {\n"
-"  mat4 mvp; \n"
+"  mat4 m; \n"
+"  mat4 v; \n"
+"  mat4 p; \n"
 "  vec4 color; \n"
 "};\n"
 "layout(std140, binding=0) buffer uniform_buffer { \n"
 "  buffer_data data[]; \n"
 "};\n"
 "void main() { \n"
-"  gl_Position = data[index].mvp * vec4(in_xyzw,-1.0,1.0); \n"
+"  gl_Position = data[index].m * data[index].v * data[index].p * vec4(in_xyzw,-1.0,1.0); \n"
 "}";
 static const char* fragment_shader =
 "#version 440 core \n"
 "uniform int index;\n"
 "struct buffer_data {\n"
-"  mat4 mvp; \n"
+"  mat4 m; \n"
+"  mat4 v; \n"
+"  mat4 p; \n"
 "  vec4 color; \n"
 "};\n"
 "layout(std140, binding=0) buffer uniform_buffer { \n"
@@ -73,7 +77,9 @@ storage_buffer_indexed_test::storage_buffer_indexed_test() {
 
     per_object_uniforms ud;
     ud._color = glm::vec4{ 1.f, 1.f, 1.f, 1.f };
-    ud._mvp = glm::mat4( 1.f );
+    ud._m = glm::mat4( 1.f );
+    ud._v = glm::mat4( 1.f );
+    ud._p = glm::mat4( 1.f );
     _data_buffer.resize( NUMBER_OF_OBJECTS, ud );
 
     glBufferData( GL_SHADER_STORAGE_BUFFER, _data_buffer.size() * sizeof( per_object_uniforms ), nullptr, GL_DYNAMIC_DRAW );

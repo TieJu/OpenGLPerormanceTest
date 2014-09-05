@@ -1,7 +1,7 @@
 #include "uniform_buffer_persistent_mapped_indexed_test.h"
 
 // limited to about 512 per batch, increasing this will generate errors on shader compilation/linking on nvidia GF GTX 660 
-#define MAX_INDEX 512
+#define MAX_INDEX 256
 
 // add a fixed 4 frame latency w/o any sync stuff
 #define FRAME_LATENCY 4
@@ -11,24 +11,28 @@ static const char* vertex_shader =
 "in vec2 in_xyzw; \n"
 "uniform int index;\n"
 "struct buffer_data {\n"
-"  mat4 mvp; \n"
+"  mat4 m; \n"
+"  mat4 v; \n"
+"  mat4 p; \n"
 "  vec4 color; \n"
 "};\n"
 "layout(std140) uniform uniform_buffer { \n"
-"  buffer_data data[512]; \n"
+"  buffer_data data[256]; \n"
 "};\n"
 "void main() { \n"
-"  gl_Position = data[index].mvp * vec4(in_xyzw,-1.0,1.0); \n"
+"  gl_Position = data[index].m * data[index].v * data[index].p * vec4(in_xyzw,-1.0,1.0); \n"
 "}";
 static const char* fragment_shader =
 "#version 440 core \n"
 "uniform int index;\n"
 "struct buffer_data {\n"
-"  mat4 mvp; \n"
+"  mat4 m; \n"
+"  mat4 v; \n"
+"  mat4 p; \n"
 "  vec4 color; \n"
 "};\n"
 "layout(std140) uniform uniform_buffer { \n"
-"  buffer_data data[512]; \n"
+"  buffer_data data[256]; \n"
 "};\n"
 "out vec4 o_color; \n"
 "void main() { \n"
@@ -40,7 +44,9 @@ static const char* fragment_shader =
 
 void uniform_buffer_persistent_mapped_indexed_test::pre_draw( int index_ ) {
     _data_ptr[FrameOffsetIndex( _frame_index ) + index_]._color = glm::vec4( 1.f );
-    _data_ptr[FrameOffsetIndex( _frame_index ) + index_]._mvp = glm::mat4( 1.f );
+    _data_ptr[FrameOffsetIndex( _frame_index ) + index_]._m = glm::mat4( 1.f );
+    _data_ptr[FrameOffsetIndex( _frame_index ) + index_]._v = glm::mat4( 1.f );
+    _data_ptr[FrameOffsetIndex( _frame_index ) + index_]._p = glm::mat4( 1.f );
     auto offset = index_ / MAX_INDEX;
     if ( offset != _last_offset ) {
         _last_offset = offset;

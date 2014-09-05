@@ -4,7 +4,9 @@
 
 class uniform_buffer_indexed_test : public opengl_test<uniform_buffer_indexed_test> {
     struct per_object_uniforms {
-        glm::mat4   _mvp;
+        glm::mat4   _m;
+        glm::mat4   _v;
+        glm::mat4   _p;
         glm::vec4   _color;
     };
 
