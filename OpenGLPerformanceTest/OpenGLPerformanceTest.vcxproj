@@ -153,6 +153,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="no_uniform_block_test.cpp" />
     <ClCompile Include="opengl.cpp" />
+    <ClCompile Include="opengl_test.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="storage_buffer_indexed_test.cpp" />
     <ClCompile Include="uniform_buffer_indexed_test.cpp" />
