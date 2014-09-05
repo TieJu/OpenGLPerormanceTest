@@ -22,7 +22,7 @@ class storage_buffer_indexed_test : public opengl_test<storage_buffer_indexed_te
     void pre_draw( int index_ );
     void post_draw( int index_ );
 
-    void pre_init();
+    void pre_init( const char* vertex_shader_, const char* fragment_shader_ );
     void post_init();
 
     void pre_bind();

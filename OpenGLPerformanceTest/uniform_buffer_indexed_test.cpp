@@ -3,44 +3,12 @@
 // limited to about 256 per batch, increasing this will generate errors on shader compilation/linking on nvidia GF GTX 660 
 #define MAX_INDEX 256
 
-static const char* vertex_shader =
-"#version 440 core \n"
-"in vec2 in_xyzw; \n"
-"uniform int index;\n"
-"struct buffer_data {\n"
-"  mat4 m; \n"
-"  mat4 v; \n"
-"  mat4 p; \n"
-"  vec4 r; \n"
-"  vec4 g; \n"
-"  vec4 b; \n"
-"  vec4 a; \n"
-"};\n"
-"layout(std140) uniform uniform_buffer { \n"
-"  buffer_data data[256]; \n"
-"};\n"
-"void main() { \n"
-"  gl_Position = data[index].m * data[index].v * data[index].p * vec4(in_xyzw,-1.0,1.0); \n"
-"}";
-static const char* fragment_shader =
-"#version 440 core \n"
-"uniform int index;\n"
-"struct buffer_data {\n"
-"  mat4 m; \n"
-"  mat4 v; \n"
-"  mat4 p; \n"
-"  vec4 r; \n"
-"  vec4 g; \n"
-"  vec4 b; \n"
-"  vec4 a; \n"
-"};\n"
-"layout(std140) uniform uniform_buffer { \n"
-"  buffer_data data[256]; \n"
-"};\n"
-"out vec4 o_color; \n"
-"void main() { \n"
-"  o_color = data[index].r + data[index].g + data[index].b + data[index].a; \n"
-"}";
+static const char* shader_defines =
+"#define BeginUniformBlock(name_) struct name_##_data_s {\n"
+"#define EndUniformBlock(name_) }; layout(std140, binding=0) uniform name_ { name_##_data_s name_##_data [256] ; };\n"
+"#define DefineUniform(type_, name_) type_ name_; \n"
+"#define GetUniform(block_, name_) block_##_data[index]. name_\n"
+"#define DeclareIndex uniform int index;\n";
 
 void uniform_buffer_indexed_test::pre_draw( int index_ ) {
     auto offset = index_ / MAX_INDEX;
@@ -56,8 +24,10 @@ void uniform_buffer_indexed_test::post_draw( int index_ ) {
 
 }
 
-void uniform_buffer_indexed_test::pre_init() {
-    _shader.set_code( 1, &vertex_shader, 1, &fragment_shader );
+void uniform_buffer_indexed_test::pre_init( const char* vertex_shader_, const char* fragment_shader_ ) {
+    const char* bufv[] = { shader_defines, vertex_shader_ };
+    const char* buff[] = { shader_defines, fragment_shader_ };
+    _shader.set_code( 2, bufv, 2, buff );
 }
 
 void uniform_buffer_indexed_test::post_init() {
